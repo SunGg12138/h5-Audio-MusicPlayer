@@ -40,6 +40,14 @@ html, body, .loading {
 	width: 100%;
 	text-align: center;
 }
+.loading .loading-caption {
+	position: absolute;
+	color: #fff;
+	letter-spacing: 3px;
+	font-size: 14px;
+	width: 100%;
+	bottom: -26px;
+}
 .loading .loading-progress em {
 	display: block;
 	border-radius: 6px;

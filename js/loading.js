@@ -31,12 +31,14 @@ var loading = (function(){
 		],
 		loadingDOM,
 		progressBarDOM,
+		loadingCaptionDOM,
 		player,
 		allLength;
 	function startPicLoading(fn) {
 		var alreadyLength = 0;
 		startPicLoading.fn = fn;
 		loadingDOM = document.getElementById('loading');
+		loadingCaptionDOM = document.getElementById('loading-caption');
 		progressBarDOM = loadingDOM.querySelector('em');
 		player = document.getElementById('player');
 		allLength = loadPicPath.length;
@@ -59,6 +61,7 @@ var loading = (function(){
 			player.removeEventListener('canplaythrough', tempEvent);
 		}
 		if (readylength === allLength) {
+			loadingCaptionDOM.innerText = '正在加载音乐...';
 			player.addEventListener('canplaythrough', tempEvent);
 		};
 	}

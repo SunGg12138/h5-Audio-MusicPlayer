@@ -76,9 +76,8 @@ var main = (function(){
 		voiceW = mainW * 60/100;
 		isProgressBtnDrag = false;
 		window.placementDistance = 0;
-		setBg();
 		mediaLoop();
-		menu.querySelectorAll('li')[0].click();
+		nextBtn.click();
 	}
 	//设置背景图
 	function setBg(bgSrc) {
@@ -174,6 +173,10 @@ var main = (function(){
 					break;
 				};
 			};
+			if (typeof activeIndex === 'undefined') {
+				menu.querySelectorAll('li')[length-1].click();
+				return;
+			};
 			if (activeIndex !== 0) {
 				activeIndex--;
 			};
@@ -189,6 +192,10 @@ var main = (function(){
 					activeIndex = i;
 					break;
 				};
+			};
+			if (typeof activeIndex === 'undefined') {
+				menu.querySelectorAll('li')[0].click();
+				return;
 			};
 			if (activeIndex !== length-1) {
 				activeIndex++;

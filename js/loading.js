@@ -33,7 +33,22 @@ var loading = (function(){
 		progressBarDOM,
 		loadingCaptionDOM,
 		player,
+		isPicLoad = false,
+		isAudioLoad = false,
 		allLength;
+	function tempEvent() {
+		isAudioLoad = true;
+		player.removeEventListener('canplaythrough', tempEvent);
+		tryFinal();
+	}
+	function tryFinal() {
+		if (isAudioLoad && isPicLoad) {
+			setTimeout(function(){
+				loadingDOM.style.display = 'none';
+				startPicLoading.fn();
+			}, 500);
+		};
+	}
 	function startPicLoading(fn) {
 		var alreadyLength = 0;
 		startPicLoading.fn = fn;
@@ -41,6 +56,7 @@ var loading = (function(){
 		loadingCaptionDOM = document.getElementById('loading-caption');
 		progressBarDOM = loadingDOM.querySelector('em');
 		player = document.getElementById('player');
+		player.addEventListener('canplaythrough', tempEvent);
 		allLength = loadPicPath.length;
 		loadPicPath.forEach(function(item, index){
 			var img = new Image();
@@ -53,16 +69,10 @@ var loading = (function(){
 	}
 	function updateLoadView(readylength) {
 		progressBarDOM.style.width = readylength/allLength * 100 + '%';
-		function tempEvent() {
-			setTimeout(function(){
-				loadingDOM.style.display = 'none';
-				startPicLoading.fn();
-			}, 500);
-			player.removeEventListener('canplaythrough', tempEvent);
-		}
 		if (readylength === allLength) {
 			loadingCaptionDOM.innerText = '正在加载音乐...';
-			player.addEventListener('canplaythrough', tempEvent);
+			isPicLoad = true;
+			tryFinal();
 		};
 	}
 	return {

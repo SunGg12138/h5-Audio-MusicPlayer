@@ -1,0 +1,12 @@
+.slideTransition {
+	transition: right linear .6s;
+}
+@keyframes singPaly {
+	0% {left: 0;}
+	50% {left: -100%;}
+	51% {left: 100%;}
+	100% {left: 0;}
+}
+.sing-name-animate {
+	animation: singPaly 1s;
+}

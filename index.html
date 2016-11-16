@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>音乐播放器</title>
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/shape.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/main.js"></script>
+</head>
+<body>
+	<div id="main" class="main">
+		<div class="top">
+			<span href="" class="menu-btn" id="menu-btn" title="播放列表"></span>
+			<h3 class="sing-name" id="sing-name">音乐播放器</h3>
+			<div class="singer" id="singer"></div>
+			<div class="progress-bar" id="progress-bar">
+				<em>
+					<div class="progress-btn" id="progress-btn"></div>
+				</em>
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="control-box">
+				<div class="prev" id="prev-btn" title="上一首">
+					<div class="triangle triangle-right prev-btn"></div><div class="triangle triangle-right prev-btn"></div>
+				</div>
+				<div class="triangle triangle-right control" id="control" title="播放/暂停"></div>
+				<div class="next" id="next-btn" title="下一首">
+					<div class="triangle triangle-right next-btn"></div><div class="triangle triangle-right next-btn"></div>
+				</div>
+				<div class="justify-line"></div>
+			</div>
+			<div id="music-voice" class="music-voice">
+				<div class="volume-icon volume-left" id="volume-left">
+					<img src="images/volume_left.png" alt="volume" width="20" title="静音开关">
+				</div>
+				<div class="volume-icon volume-right" id="volume-right">
+					<img src="images/volume_right.png" alt="volume" width="20" title="最大音量">
+				</div>
+				<em>
+					<div class="voice-btn" id="voice-btn"></div>
+				</em>
+			</div>
+		</div>
+	</div>
+	<div class="menu slideTransition" id="menu">
+		<span class="close" id="close">X</span>
+		<h2>
+			播放列表
+		</h2>
+		<ul>
+			<li data-src="./media/算什么男人_周杰伦.mp3" data-name="算什么男人" data-singer="周杰伦" data-pic="images/singer/周杰伦.jpg">算什么男人 - 周杰伦</li>
+			<li data-src="./media/taylor swift-you belong with me.mp3" data-name="you belong with me" data-singer="Taylor Swift" data-pic="images/singer/taylorSwift.jpg">You belong with me - Taylor Swift</li>
+			<li data-src="./media/OneRepublic - Counting Stars.mp3" data-name="Counting Stars" data-singer="OneRepublic" data-pic="images/singer/OneRepublic.jpg">Counting Stars - OneRepublic</li>
+			<li data-src="./media/戴荃 - 悟空 (Live).mp3" data-name="悟空" data-singer="戴荃" data-pic="images/singer/戴荃.jpg">悟空(Live) - 戴荃</li>
+			<li data-src="./media/江南 - 林俊杰.mp3" data-name="江南" data-singer="林俊杰" data-pic="images/singer/林俊杰.jpg">江南 - 林俊杰</li>
+			<li data-src="./media/林俊杰 - 生生.mp3" data-name="生生" data-singer="林俊杰" data-pic="images/singer/林俊杰.jpg">生生 - 林俊杰</li>
+			<li data-src="./media/林俊杰 - 她说.mp3" data-name="她说" data-singer="林俊杰" data-pic="images/singer/林俊杰.jpg">她说 - 林俊杰</li>
+		</ul>
+	</div>
+	<audio src="media/taylor swift-you belong with me.mp3" id="player" preload="auto"></audio>
+</body>
+</html>

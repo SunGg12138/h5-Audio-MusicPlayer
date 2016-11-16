@@ -1,0 +1,36 @@
+.triangle {
+	width: 0;
+	height: 0;
+	border: 20px solid rgba(0, 0, 0, 0.7);
+	display: inline-block;
+}
+.triangle-right {
+	border-right-width: 0;
+	border-top-color: transparent !important; 
+	border-bottom-color: transparent !important;
+	border-left-width: 25px;
+}
+.triangle-left {
+	border-left-width: 0;
+	border-top-color: transparent !important; 
+	border-bottom-color: transparent !important;
+	border-right-width: 25px;
+}
+.player-start {
+	width: 20px;
+	height: 40px;
+	display: inline-block;
+	background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.5) 75%);	
+}
+.bottom .prev-btn {
+	border-right-color: #fff;
+	border-left: none;
+	border-width: 10px;
+	border-right-width: 13px;
+}
+.bottom .next-btn {
+	border-left-color: #fff;
+	border-right: none;
+	border-width: 10px;
+	border-left-width: 13px;
+}

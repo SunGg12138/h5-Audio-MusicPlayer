@@ -9,8 +9,17 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/main.js"></script>
+	<script src="js/loading.js"></script>
 </head>
 <body>
+	<div class="loading" id="loading">
+		<div class="loading-progress">
+			<div class="loading-title">
+				LOADING...
+			</div>
+			<em></em>
+		</div>
+	</div>
 	<div id="main" class="main">
 		<div class="top">
 			<span href="" class="menu-btn" id="menu-btn" title="播放列表"></span>
@@ -62,5 +71,10 @@
 		</ul>
 	</div>
 	<audio src="media/taylor swift-you belong with me.mp3" id="player" preload="auto"></audio>
+	<script>
+		loading.startPicLoading(function(){
+			main.init();
+		});
+	</script>
 </body>
 </html>

@@ -10,3 +10,7 @@
 .sing-name-animate {
 	animation: singPaly 1s;
 }
+@keyframes loadingAnimate {
+	from {background-position: 0px}
+	to {background-position: 18px}
+}

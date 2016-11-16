@@ -29,10 +29,17 @@ var loading = (function(){
 				path: './images/singer/周杰伦.jpg'
 			}
 		],
-		allLength = loadPicPath.length;
+		loadingDOM,
+		progressBarDOM,
+		player,
+		allLength;
 	function startPicLoading(fn) {
-		startPicLoading.fn = fn;
 		var alreadyLength = 0;
+		startPicLoading.fn = fn;
+		loadingDOM = document.getElementById('loading');
+		progressBarDOM = loadingDOM.querySelector('em');
+		player = document.getElementById('player');
+		allLength = loadPicPath.length;
 		loadPicPath.forEach(function(item, index){
 			var img = new Image();
 			img.src = item.path;
@@ -43,14 +50,16 @@ var loading = (function(){
 		});
 	}
 	function updateLoadView(readylength) {
-		var loadingDOM = document.getElementById('loading'),
-			progressBarDOM = loadingDOM.querySelector('em');
 		progressBarDOM.style.width = readylength/allLength * 100 + '%';
-		if (readylength === allLength) {
+		function tempEvent() {
 			setTimeout(function(){
 				loadingDOM.style.display = 'none';
 				startPicLoading.fn();
 			}, 500);
+			player.removeEventListener('canplaythrough', tempEvent);
+		}
+		if (readylength === allLength) {
+			player.addEventListener('canplaythrough', tempEvent);
 		};
 	}
 	return {

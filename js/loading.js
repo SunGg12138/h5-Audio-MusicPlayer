@@ -35,22 +35,38 @@ var loading = (function(){
 		player,
 		isPicLoad = false,
 		isAudioLoad = false,
-		allLength;
+		allLength,
+		allTime = 0,
+		isFinish = false;
 	function tempEvent() {
 		isAudioLoad = true;
 		player.removeEventListener('canplaythrough', tempEvent);
-		tryFinal();
+		tryFinish();
 	}
-	function tryFinal() {
-		if (isAudioLoad && isPicLoad) {
-			setTimeout(function(){
-				loadingDOM.style.display = 'none';
-				startPicLoading.fn();
-			}, 500);
+	function timer() {
+		allTime++;
+		if (allTime > 4) {
+			finish();
+			return;
 		};
+		window.setTimeout(timer, 1000);
+	}
+	function tryFinish() {
+		if (isAudioLoad && isPicLoad) {
+			finish();
+		};
+	}
+	function finish() {
+		if (isFinish) return;
+		isFinish = true;
+		window.setTimeout(function(){
+			loadingDOM.style.display = 'none';
+			startPicLoading.fn();
+		}, 500);
 	}
 	function startPicLoading(fn) {
 		var alreadyLength = 0;
+		timer();   //开始计时
 		startPicLoading.fn = fn;
 		loadingDOM = document.getElementById('loading');
 		loadingCaptionDOM = document.getElementById('loading-caption');
@@ -72,7 +88,7 @@ var loading = (function(){
 		if (readylength === allLength) {
 			loadingCaptionDOM.innerText = '正在加载音乐...';
 			isPicLoad = true;
-			tryFinal();
+			tryFinish();
 		};
 	}
 	return {

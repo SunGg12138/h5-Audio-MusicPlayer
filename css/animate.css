@@ -1,16 +1,19 @@
+/*菜单列表动画*/
 .slideTransition {
 	transition: right linear .6s;
 }
-@keyframes singPaly {
-	0% {left: 0;}
-	50% {left: -100%;}
-	51% {left: 100%;}
-	100% {left: 0;}
-}
-.sing-name-animate {
-	animation: singPaly 1s;
-}
+/*loading 进度条动画*/
 @keyframes loadingAnimate {
 	from {background-position: 0px}
 	to {background-position: 18px}
+}
+/*loading 加载详情动画*/
+@keyframes fadeOutAnimate {
+	0% {opacity: 1;}
+	50% {opacity: 0.8;}
+	80% {opacity: 0.5;}
+	100% {opacity: 0;}
+}
+.fadeOut {
+	animation: fadeOutAnimate .6s;
 }

@@ -134,6 +134,13 @@ body {
 	width: 0;
 	height: 100%;
 	background: #ff562b;
+	z-index: 999;
+}
+.top .buffered {
+	position: absolute;
+	width: 60%;
+	height: 100%;
+	background-color: #444;
 }
 .top .progress-bar .progress-btn {
 	position: absolute;
@@ -145,6 +152,7 @@ body {
 	top: -4px;
 	left: -3px;
 	cursor: pointer;
+	z-index: 10000;
 }
 .bottom {
 	border-radius: 0 0 8px 8px;
@@ -211,6 +219,21 @@ body {
 }
 .bottom .music-voice .volume-right {
 	right: -35px;
+}
+.buffering {
+	position: absolute;
+	width: 50px;
+	bottom: -80px;
+	left: 50%;
+	margin-left: -25px;
+	color: #fff;
+	font-weight: 600;
+	display: none;
+}
+.buffering img {
+	width: 100%;
+	-webkit-animation: bufferingAnimate linear 1s infinite;
+	animation: bufferingAnimate linear 1s infinite;
 }
 .menu {
 	width: 320px;

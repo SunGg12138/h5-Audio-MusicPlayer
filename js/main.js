@@ -277,6 +277,45 @@ var main = (function(){
 		var thisWidth = getNowTime()/getAllTime();
 		progressBar.style.width = thisWidth*100 + '%';
 		progressBtn.style.left = thisWidth*mainW-3 + 'px';
+		setBuffered();
+	}
+	function setBuffered() {
+		if (player.buffered.length > 0) {
+			var bufferedLength = player.buffered.length,
+				bufferedDOM = document.querySelectorAll('.buffered'),
+				divElem = document.createElement('div'),
+				isBufferCanPlay = false;
+			divElem.className = 'buffered';
+			for (var i = 0;i<bufferedLength;i++) {
+				var thisDiv,
+					thisStart = player.buffered.start(0),
+					thisEnd = player.buffered.end(0);
+				for (var i=0;i<bufferedDOM.length;i++) {
+					if (bufferedDOM[i].classList.contains('start-'+i)) {
+						thisDiv = bufferedDOM[i];
+						break;
+					};
+				};
+				if (typeof thisDiv === 'undefined') {
+					thisDiv = divElem.cloneNode(true);
+					thisDiv.className += ' start-'+i;
+					progressBox.appendChild(thisDiv);
+				};
+				thisDiv.style.left = thisStart/getAllTime() * 100 + '%';
+				thisDiv.style.width = (thisEnd-thisStart)/getAllTime() * 100 + '%';
+				if (getNowTime() >= thisStart && getNowTime()<thisEnd-1) {
+					isBufferCanPlay = true;
+				};
+			};
+			if (!isBufferCanPlay) {
+				document.getElementById('buffering').style.display = 'block';
+				if (!player.paused) {
+					musicControl(false);
+				};
+			}else{
+				document.getElementById('buffering').style.display = 'none';
+			};
+		};
 	}
 	//更新音量到视图
 	function updateVolume() {

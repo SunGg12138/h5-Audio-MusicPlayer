@@ -26,6 +26,7 @@ var main = (function(){
 		menu,   //菜单
 		menuBtn,   //菜单按钮
 		close,   //菜单上的关闭按钮
+		bufferingDOM,
 		//时间线和音量的滑动临时事件方法
 		tempEventFunc = {
 			tempTimeMoveEvent: function(e) {
@@ -110,6 +111,7 @@ var main = (function(){
 		close = document.getElementById('close');
 		volumeLeft = document.getElementById('volume-left');
 		volumeRight = document.getElementById('volume-right');
+		bufferingDOM =  document.getElementById('buffering');
 	}
 	//添加事件
 	function addEvent() {
@@ -303,17 +305,21 @@ var main = (function(){
 				};
 				thisDiv.style.left = thisStart/getAllTime() * 100 + '%';
 				thisDiv.style.width = (thisEnd-thisStart)/getAllTime() * 100 + '%';
+				if ((thisEnd-thisStart)/getAllTime() === 1) {
+					bufferingDOM.style.display = 'none';
+					return;
+				};
 				if (getNowTime() >= thisStart && getNowTime()<thisEnd-1) {
 					isBufferCanPlay = true;
 				};
 			};
 			if (!isBufferCanPlay) {
-				document.getElementById('buffering').style.display = 'block';
+				bufferingDOM.style.display = 'block';
 				if (!player.paused) {
 					musicControl(false);
 				};
 			}else{
-				document.getElementById('buffering').style.display = 'none';
+				bufferingDOM.style.display = 'none';
 			};
 		};
 	}
